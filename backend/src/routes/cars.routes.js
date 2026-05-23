@@ -1,38 +1,39 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getAllCars,
-  getCarById,
-  createCar,
-  updateCar,
-  deleteCar,
+  getAllAppointments,
+  getAppointmentById,
+  createAppointment,
+  updateAppointment,
+  cancelAppointment,
+  deleteAppointment,
 } = require("../controllers/cars.controller");
 
 /**
  * @swagger
  * tags:
- *   name: Cars
- *   description: API para gestión de carros
+ *   name: Appointments
+ *   description: API para gestión de citas del taller mecánico
  */
 
 /**
  * @swagger
- * /api/cars:
+ * /api/appointments:
  *   get:
- *     summary: Obtener todos los carros
- *     tags: [Cars]
+ *     summary: Obtener todas las citas
+ *     tags: [Appointments]
  *     responses:
  *       200:
- *         description: Lista de carros
+ *         description: Lista de citas
  */
-router.get("/", getAllCars);
+router.get("/", getAllAppointments);
 
 /**
  * @swagger
- * /api/cars/{id}:
+ * /api/appointments/{id}:
  *   get:
- *     summary: Obtener un carro por ID
- *     tags: [Cars]
+ *     summary: Obtener una cita por ID
+ *     tags: [Appointments]
  *     parameters:
  *       - in: path
  *         name: id
@@ -41,18 +42,18 @@ router.get("/", getAllCars);
  *           type: integer
  *     responses:
  *       200:
- *         description: Carro encontrado
+ *         description: Cita encontrada
  *       404:
- *         description: Carro no encontrado
+ *         description: Cita no encontrada
  */
-router.get("/:id", getCarById);
+router.get("/:id", getAppointmentById);
 
 /**
  * @swagger
- * /api/cars:
+ * /api/appointments:
  *   post:
- *     summary: Crear un nuevo carro
- *     tags: [Cars]
+ *     summary: Crear una nueva cita
+ *     tags: [Appointments]
  *     requestBody:
  *       required: true
  *       content:
@@ -60,26 +61,36 @@ router.get("/:id", getCarById);
  *           schema:
  *             type: object
  *             properties:
- *               brand:
+ *               cliente:
  *                 type: string
- *               model:
+ *               telefono:
  *                 type: string
- *               year:
+ *               marca:
+ *                 type: string
+ *               modelo:
+ *                 type: string
+ *               año:
  *                 type: integer
- *               color:
+ *               servicio:
+ *                 type: string
+ *               fecha:
+ *                 type: string
+ *               hora:
+ *                 type: string
+ *               estado:
  *                 type: string
  *     responses:
  *       201:
- *         description: Carro creado
+ *         description: Cita creada
  */
-router.post("/", createCar);
+router.post("/", createAppointment);
 
 /**
  * @swagger
- * /api/cars/{id}:
+ * /api/appointments/{id}:
  *   put:
- *     summary: Actualizar un carro
- *     tags: [Cars]
+ *     summary: Actualizar una cita
+ *     tags: [Appointments]
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,28 +104,38 @@ router.post("/", createCar);
  *           schema:
  *             type: object
  *             properties:
- *               brand:
+ *               cliente:
  *                 type: string
- *               model:
+ *               telefono:
  *                 type: string
- *               year:
+ *               marca:
+ *                 type: string
+ *               modelo:
+ *                 type: string
+ *               año:
  *                 type: integer
- *               color:
+ *               servicio:
+ *                 type: string
+ *               fecha:
+ *                 type: string
+ *               hora:
+ *                 type: string
+ *               estado:
  *                 type: string
  *     responses:
  *       200:
- *         description: Carro actualizado
+ *         description: Cita actualizada
  *       404:
- *         description: Carro no encontrado
+ *         description: Cita no encontrada
  */
-router.put("/:id", updateCar);
+router.put("/:id", updateAppointment);
 
 /**
  * @swagger
- * /api/cars/{id}:
- *   delete:
- *     summary: Eliminar un carro
- *     tags: [Cars]
+ * /api/appointments/{id}/cancel:
+ *   patch:
+ *     summary: Cancelar una cita
+ *     tags: [Appointments]
  *     parameters:
  *       - in: path
  *         name: id
@@ -123,10 +144,30 @@ router.put("/:id", updateCar);
  *           type: integer
  *     responses:
  *       200:
- *         description: Carro eliminado
+ *         description: Cita cancelada
  *       404:
- *         description: Carro no encontrado
+ *         description: Cita no encontrada
  */
-router.delete("/:id", deleteCar);
+router.patch("/:id/cancel", cancelAppointment);
+
+/**
+ * @swagger
+ * /api/appointments/{id}:
+ *   delete:
+ *     summary: Eliminar una cita
+ *     tags: [Appointments]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Cita eliminada
+ *       404:
+ *         description: Cita no encontrada
+ */
+router.delete("/:id", deleteAppointment);
 
 module.exports = router;

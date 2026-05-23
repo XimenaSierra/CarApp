@@ -5,11 +5,11 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "CarApp API",
-      version: "1.0.0",
-      description:
-        "API REST para la gestión de carros, desarrollada con Express y documentada con Swagger",
+  title: "CarApp - Taller Mecánico API",
+  version: "1.0.0",
+  description: "API REST para gestión de citas de taller mecánico, desarrollada con Express y documentada con Swagger",
     },
+    
     servers: [
       {
         url: "http://localhost:3001",

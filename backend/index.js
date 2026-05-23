@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const carsRoutes = require("./src/routes/cars.routes");
+const appointmentsRoutes = require("./src/routes/cars.routes");
 const swaggerDocs = require("./src/swagger");
 
 const app = express();
@@ -11,14 +11,14 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use("/api/cars", carsRoutes);
+app.use("/api/appointments", appointmentsRoutes);
 
 // Swagger
 swaggerDocs(app);
 
 // Ruta raíz
 app.get("/", (req, res) => {
-  res.json({ message: "¡Bienvenido a CarApp API! 🚗" });
+  res.json({ message: "¡Bienvenido a CarApp - Taller Mecánico! 🔧" });
 });
 
 // Iniciar servidor
