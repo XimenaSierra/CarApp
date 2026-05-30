@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3001/api/appointments";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api/appointments";
 
 // Obtener todas las citas
 export const getAllAppointments = async () => {
